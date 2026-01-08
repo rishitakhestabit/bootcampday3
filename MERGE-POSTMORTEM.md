@@ -21,8 +21,7 @@ I began by moving into my main working repository and checking its status:
 ```bash
 cd ~/bootcampday3
 git status
-<<<<<<< Updated upstream
-
+```
 At this stage:
 
     The branch was already up to date with origin/master
@@ -35,6 +34,10 @@ At this stage:
 
 I then pushed the repository to GitHub to ensure it was available as a remote source for cloning:
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 At this stage:
 
    The branch was already up to date with origin/master
@@ -45,6 +48,10 @@ At this stage:
         screenshots/
 
 I then pushed the repository to GitHub to ensure it was available as a remote source for cloning:
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 git push origin master
 
 This confirmed that the bootcampday3 repository was successfully published on GitHub and ready to be cloned.
@@ -137,12 +144,27 @@ Resolving the Merge Conflict (Keeping Both Changes)
 I opened the conflicted file to resolve it manually:
 
 nano calculator.js
+<<<<<<< Updated upstream
 Inside the conflict markers , I carefully edited the file to keep both changes, ensuring no functionality or intent was lost.
 Inside the conflict markers, I carefully edited the file to keep both changes, ensuring no functionality or intent was lost.
+=======
+
+Inside the conflict markers, I carefully edited the file to keep both changes, ensuring no functionality or intent was lost.
+
+Inside the conflict markers, I carefully edited the file to keep both changes, ensuring no functionality or intent was lost.
+
+>>>>>>> Stashed changes
 
 After resolving the conflict, I staged and committed the merge:
 git add calculator.js
 git commit -m "Merge conflict resolved"
+<<<<<<< Updated upstream
+=======
+
+
+This created a true merge commit, which is a key requirement of the assignment.
+
+>>>>>>> Stashed changes
 
 This created a true merge commit.
 
@@ -155,6 +177,10 @@ Final resolved file:
 
 Verifying the Commit Graph
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     Conflict markers before resolution:
     ![Conflict markers before resolution](screenshots/markersmergeconflict.png)
 
@@ -163,6 +189,10 @@ Verifying the Commit Graph
 
 Verifying the Commit Graph
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 To confirm that the history correctly shows branching and a merge commit, I checked the commit graph:
 
 git log --oneline --graph --all
@@ -177,11 +207,20 @@ The output showed:
 * cfbbadf previous commits...
 
 This confirms:
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     Two parallel commits (one from Repo-A and one from Repo-B)
 
     A merge commit that joins both branches
 
     A clear visual representation of branching and merging
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 Two parallel commits (one from Repo-A and one from Repo-B)
 A merge commit that joins both branches
  A clear visual representation of branching and merging
