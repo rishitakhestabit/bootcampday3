@@ -164,7 +164,6 @@ This confirms:
 
     A clear visual representation of branching and merging
 
-
 ![Commit graph with merge](screenshots/graph.png)
 Pushing the Merge Commit to GitHub
 
