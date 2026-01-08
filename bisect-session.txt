@@ -1,0 +1,9 @@
+git bisect start
+# status: waiting for both good and bad commits
+# bad: [cfbbadfa6f87e084c2613a7cf92af396afc4f7f3] C8: log div
+git bisect bad cfbbadfa6f87e084c2613a7cf92af396afc4f7f3
+# status: waiting for good commit(s), bad commit known
+# good: [8643c173b924ec4f429c26ef2443b33fef8875e7] C3: multiply function
+git bisect good 8643c173b924ec4f429c26ef2443b33fef8875e7
+# bad: [1de570ec96d7f22624854a1d99d5753a1629d2a7] C5: log add
+git bisect bad 1de570ec96d7f22624854a1d99d5753a1629d2a7
