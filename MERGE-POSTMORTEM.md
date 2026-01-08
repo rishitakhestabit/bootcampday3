@@ -2,125 +2,152 @@
 
 ## Objective
 
-The goal of this task was to simulate a real-world Git collaboration scenario by:
+The objective of this task was to simulate a real-world Git collaboration scenario. I intentionally worked with two separate clones of the same repository to reproduce how merge conflicts happen in team environments and how they are resolved correctly.  
 
-- Using two clones of the same repository
-- Editing the same line in the same file
-- Creating a merge conflict
-- Resolving the conflict while keeping both changes
-- Ensuring the commit graph shows branches and a merge commit
+Through this exercise, I aimed to demonstrate the following:
 
+- Working with two clones of the same Git repository  
+- Editing the same line in the same file from different clones  
+- Triggering a merge conflict  
+- Resolving the conflict while keeping both changes  
+- Verifying that the commit history clearly shows branches and a merge commit
+
+---
 
 ## Pushing the Base Repository to GitHub
 
-I started by going to my main working repository:
+I began by moving into my main working repository and checking its status:
 
 ```bash
 cd ~/bootcampday3
 git status
-```
-At this point:
- My branch was up to date with origin/master
- I had some untracked files such as:
 
- bisect-session.txt
- screenshots/
-I then pushed the repository to GitHub:
+At this stage:
+
+    The branch was already up to date with origin/master
+
+    There were some untracked files such as:
+
+        bisect-session.txt
+
+        screenshots/
+
+I then pushed the repository to GitHub to ensure it was available as a remote source for cloning:
+
 git push origin master
-This ensured that the bootcampday3 repository existed on GitHub and could be cloned.
 
-Then I created Two Clones (Repo-A and Repo-B)
+This confirmed that the bootcampday3 repository was successfully published on GitHub and ready to be cloned.
+Creating Two Independent Clones (Repo-A and Repo-B)
 
-To simulate two developers working independently, I cloned the same GitHub repository into two different directories:
+To simulate two developers working independently, I created two clones of the same GitHub repository:
 
 cd ~
 git clone https://github.com/rishitakhestabit/bootcampday3.git repo-A
 git clone https://github.com/rishitakhestabit/bootcampday3.git repo-B
 
-Now:
+At this point:
 
     repo-A represents Developer A
+
     repo-B represents Developer B
 
-Both repositories started from the exact same commit history.
+Both clones started from the exact same commit history.
+Making a Change in Repo-A
 
-I made a Change in Repo-A
-
-I navigated into repo-A and edited the calculator.js file.
+I navigated into repo-A and edited the calculator.js file:
 
 cd ~/repo-A
 nano calculator.js
 
-I modified the log related to the div function (same line that would later be edited in Repo-B).
+Here, I modified the log related to the div function.
+This is important because the same line would later be edited differently in Repo-B.
 
-Then I committed and pushed the change:
+After making the change, I committed and pushed it to GitHub:
 
 git add calculator.js
 git commit -m "Repo-A: modify div log message"
 git push origin master
 
+At this point, GitHub had a new commit from Repo-A.
 Making a Conflicting Change in Repo-B
 
-Next, I moved to repo-B and edited the same file and same line:
+Next, I switched to repo-B and edited the same file and the same logical line:
 
 cd ~/repo-B
 nano calculator.js
 
-Before pulling the latest changes, Repo-B had local modifications.
+Before pulling the latest changes from GitHub, Repo-B now had local modifications.
 
-When I tried to pull:
+When I attempted to pull:
 
 git pull --no-rebase origin master
 
-Git correctly stopped me with this error:
+Git correctly stopped the operation with the following error:
 
     Your local changes would be overwritten by merge.
 
+This is expected behavior and indicates Git is protecting local work.
 Committing Local Changes in Repo-B
-To proceed safely, I committed my local change in Repo-B:
+
+To proceed safely, I committed my local changes in Repo-B:
+
 git add calculator.js
 git commit -m "added line b"
-Now Repo-B had its own commit, while GitHub had Repo-A’s commit.
 
-Pulling and Creating a Merge Conflict
-After committing, I pulled again:
+Now:
+
+    Repo-A had one commit already pushed to GitHub
+
+    Repo-B had its own local commit touching the same line
+
+Pulling and Triggering the Merge Conflict
+
+After committing locally, I pulled again:
+
 git pull --no-rebase
-This time Git attempted a merge and produced a merge conflict:
+
+This time, Git attempted to merge the histories and produced a merge conflict:
+
 CONFLICT (content): Merge conflict in calculator.js
 Automatic merge failed
 
-This happened because:
+This conflict occurred because:
 
-    Repo-A and Repo-B modified the same line
-    Git could not decide automatically which change to keep
+    Both Repo-A and Repo-B modified the same line
+
+    Git could not automatically decide which version to keep
+
 
 ![Merge Conflict](screenshots/mergeconflict.png)
+Resolving the Merge Conflict (Keeping Both Changes)
 
-#Resolving the Merge Conflict (Keeping Both Changes)
-
-I opened the conflicted file:
+I opened the conflicted file to resolve it manually:
 
 nano calculator.js
 
-Inside the conflict markers, I manually edited the file to keep both changes, ensuring no logic was lost.
+Inside the conflict markers (<<<<<<<, =======, >>>>>>>), I carefully edited the file to keep both changes, ensuring no functionality or intent was lost.
+
 After resolving the conflict, I staged and committed the merge:
+
 git add calculator.js
 git commit -m "Merge conflict resolved"
-This created a true merge commit.
 
-![Conflict markers before resolution](screenshots/markersmergeconflict.png)
-
-![Final resolved file](screenshots/correctmarkers.png)
+This created a true merge commit, which is a key requirement of the assignment.
 
 
+    Conflict markers before resolution:
+    ![Conflict markers before resolution](screenshots/markersmergeconflict.png)
 
+    Final resolved file:
+    ![Final resolved file](screenshots/correctmarkers.png)
 
-Step 8: Verifying the Commit Graph
+Verifying the Commit Graph
 
-To confirm that the task requirement was met, I checked the commit graph:
+To confirm that the history correctly shows branching and a merge commit, I checked the commit graph:
 
 git log --oneline --graph --all
 
+The output showed:
 
 *   6ede0d3 Merge conflict resolved
 |\  
@@ -129,18 +156,17 @@ git log --oneline --graph --all
 |/  
 * cfbbadf previous commits...
 
-This shows:
+This confirms:
 
-    Two parallel commits
+    Two parallel commits (one from Repo-A and one from Repo-B)
 
-    A merge commit joining them
+    A merge commit that joins both branches
 
-    git log --graph --all output
-
-![Final resolved file](screenshots/graph.png)
+    A clear visual representation of branching and merging
 
 
-#Pushing the Merge Commit
+![Commit graph with merge](screenshots/graph.png)
+Pushing the Merge Commit to GitHub
 
 Finally, I pushed the resolved merge back to GitHub:
 
