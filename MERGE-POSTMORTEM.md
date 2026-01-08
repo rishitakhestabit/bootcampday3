@@ -4,11 +4,11 @@
 
 The goal of this task was to simulate a real-world Git collaboration scenario by:
 
-- Using **two clones of the same repository**
-- Editing the **same line in the same file**
-- Creating a **merge conflict**
-- Resolving the conflict while **keeping both changes**
-- Ensuring the **commit graph shows branches and a merge commit**
+- Using two clones of the same repository
+- Editing the same line in the same file
+- Creating a merge conflict
+- Resolving the conflict while keeping both changes
+- Ensuring the commit graph shows branches and a merge commit
 
 
 ## Pushing the Base Repository to GitHub
