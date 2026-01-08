@@ -1,0 +1,21 @@
+stash@{0}: WIP on master: cfbbadf C8: log div
+  411  git bisect good HEAD~5
+  412  node calculator.js
+  413  git bisect bad
+  414  git bisect log > bisect-session.txt
+  415  cat log/bisect-session.txt
+  416  cat bisect-session.txt
+  417  git bisect reset
+  418  git status
+  419  cd ~/bootcampday3
+  420  git status
+  421  nano calculator.js
+  422  git status
+  423  git stash
+  424  git status
+  425  git pull
+  426  git stash apply
+  427  git status
+  428  nano calculator.js
+  429  git stash list > stash-session.txt
+  430  history | tail -n 20 >> stash-session.txt
