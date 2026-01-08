@@ -21,6 +21,7 @@ I began by moving into my main working repository and checking its status:
 ```bash
 cd ~/bootcampday3
 git status
+<<<<<<< Updated upstream
 
 At this stage:
 
@@ -34,6 +35,20 @@ At this stage:
 
 I then pushed the repository to GitHub to ensure it was available as a remote source for cloning:
 
+=======
+```
+At this stage:
+
+   The branch was already up to date with origin/master
+
+   There were some untracked files such as:
+
+        bisect-session.txt
+        screenshots/
+
+I then pushed the repository to GitHub to ensure it was available as a remote source for cloning:
+
+>>>>>>> Stashed changes
 git push origin master
 
 This confirmed that the bootcampday3 repository was successfully published on GitHub and ready to be cloned.
@@ -121,20 +136,42 @@ This conflict occurred because:
 ![Merge Conflict](screenshots/mergeconflict.png)
 Resolving the Merge Conflict (Keeping Both Changes)
 
+<<<<<<< Updated upstream
+=======
+Resolving the Merge Conflict (Keeping Both Changes)
+
+>>>>>>> Stashed changes
 I opened the conflicted file to resolve it manually:
 
 nano calculator.js
 
+<<<<<<< Updated upstream
 Inside the conflict markers (<<<<<<<, =======, >>>>>>>), I carefully edited the file to keep both changes, ensuring no functionality or intent was lost.
+=======
+Inside the conflict markers, I carefully edited the file to keep both changes, ensuring no functionality or intent was lost.
+>>>>>>> Stashed changes
 
 After resolving the conflict, I staged and committed the merge:
 
 git add calculator.js
 git commit -m "Merge conflict resolved"
+<<<<<<< Updated upstream
 
 This created a true merge commit, which is a key requirement of the assignment.
+=======
 
+This created a true merge commit.
 
+Conflict markers before resolution:
+![Conflict markers before resolution](screenshots/markersmergeconflict.png)
+
+Final resolved file:
+![Final resolved file](screenshots/correctmarkers.png)
+>>>>>>> Stashed changes
+
+Verifying the Commit Graph
+
+<<<<<<< Updated upstream
     Conflict markers before resolution:
     ![Conflict markers before resolution](screenshots/markersmergeconflict.png)
 
@@ -143,6 +180,8 @@ This created a true merge commit, which is a key requirement of the assignment.
 
 Verifying the Commit Graph
 
+=======
+>>>>>>> Stashed changes
 To confirm that the history correctly shows branching and a merge commit, I checked the commit graph:
 
 git log --oneline --graph --all
@@ -158,17 +197,25 @@ The output showed:
 
 This confirms:
 
+<<<<<<< Updated upstream
     Two parallel commits (one from Repo-A and one from Repo-B)
 
     A merge commit that joins both branches
 
     A clear visual representation of branching and merging
 
+=======
+Two parallel commits (one from Repo-A and one from Repo-B)
+A merge commit that joins both branches
+ A clear visual representation of branching and merging
+
+>>>>>>> Stashed changes
 ![Commit graph with merge](screenshots/graph.png)
 Pushing the Merge Commit to GitHub
 
 Finally, I pushed the resolved merge back to GitHub:
 
 git push origin master
+
 
 
